@@ -1,8 +1,12 @@
 import "./App.css";
-import { ModeToggle } from "./components/mode-toggle";
+import Header from "./components/header";
 
 function App() {
-  return <ModeToggle />;
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
 
 export default App;

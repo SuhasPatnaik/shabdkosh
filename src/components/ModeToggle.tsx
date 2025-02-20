@@ -1,5 +1,5 @@
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "./theme-provider";
+import { Moon } from "lucide-react";
+import { useTheme } from "./ThemeProvider";
 import { Switch } from "./ui/switch";
 
 export function ModeToggle() {

@@ -33,6 +33,15 @@
 
   /* Custom color palette */
   --primary-accent: hsl(274, 82%, 60%);
+  --neutral-800: hsl(0, 0%, 2%);
+  --neutral-700: hsl(0, 0%, 12%);
+  --neutral-600: hsl(0, 0%, 18%);
+  --neutral-500: hsl(0, 0%, 23%);
+  --neutral-400: hsl(0, 0%, 51%);
+  --neutral-300: hsl(0, 0%, 91%);
+  --neutral-200: hsl(0, 0%, 96%);
+  --neutral-100: hsl(0, 0%, 100%);
+  --warning: hsl(0, 100%, 66%);
 }
 
 .dark {
@@ -60,8 +69,6 @@
   --chart-3: hsl(30 80% 55%);
   --chart-4: hsl(280 65% 60%);
   --chart-5: hsl(340 75% 55%);
-
-  /* --primary-accent: hsl(274, 82%, 60%); */
 }
 
 @theme inline {
@@ -96,6 +103,15 @@
 
   /* Custom color palette */
   --color-primary-accent: var(--primary-accent);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-700: var(--neutral-700);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-500: var(--neutral-500);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-100: var(--neutral-100);
+  --color-warning: var(--warning);
 }
 
 @layer base {
