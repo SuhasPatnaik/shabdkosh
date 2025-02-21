@@ -4,7 +4,7 @@ export default function WordHeader({ word, phonetics }) {
     (phonetic) => phonetic.text && phonetic.audio
   );
 
-  // If none found with both, try to find one with just text
+  // If none found with both, find one with just text
   if (!usablePhonetics?.length) {
     usablePhonetics = phonetics?.filter((phonetic) => phonetic.text);
   }

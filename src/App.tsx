@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./App.css";
+
 import Dictionary from "./components/Dictionary";
-import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
+import Header from "./components/Header";
 
 import axios from "axios";
 
@@ -23,7 +24,8 @@ function App() {
 
   const handleSearch = async (searchWord: string) => {
     if (!searchWord.trim()) {
-      setError("Please enter a word to search");
+      setData(null);
+      setError("Whoops, can't be empty...");
       return;
     }
 
@@ -39,7 +41,7 @@ function App() {
       }
     } catch (err) {
       if (axios.isAxiosError(err) && err.response?.status === 404) {
-        setError("Word not found");
+        setError("404: Word Not Found");
       } else {
         setError("An error occurred while fetching the data");
       }
@@ -55,8 +57,12 @@ function App() {
     <>
       <div className="py-6 px-6">
         <Header />
-        <SearchBar onSearch={handleSearch} isLoading={loading} />
-        {error && <p className="text-red-500 mt-4">{error}</p>}
+        <SearchBar
+          onSearch={handleSearch}
+          isLoading={loading}
+          hasError={error}
+        />
+        {error && <p className="text-warning mt-4">{error}</p>}
         {data && <Dictionary word={data.word} phonetics={data.phonetics} />}
       </div>
     </>
