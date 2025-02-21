@@ -13,7 +13,7 @@ interface Phonetic {
 
 interface DictionaryData {
   word: string;
-  phonetic: string;
+  phonetics: Phonetic[];
 }
 
 function App() {
@@ -57,7 +57,7 @@ function App() {
         <Header />
         <SearchBar onSearch={handleSearch} isLoading={loading} />
         {error && <p className="text-red-500 mt-4">{error}</p>}
-        {data && <Dictionary word={data.word} phonetic={data.phonetic} />}
+        {data && <Dictionary word={data.word} phonetics={data.phonetics} />}
       </div>
     </>
   );

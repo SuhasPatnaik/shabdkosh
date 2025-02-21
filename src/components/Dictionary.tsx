@@ -1,9 +1,9 @@
 import WordHeader from "./WordHeader";
 
-export default function Dictionary({ word, phonetic }) {
+export default function Dictionary({ word, phonetics }) {
   return (
     <>
-      <WordHeader word={word} phonetic={phonetic} />
+      <WordHeader word={word} phonetics={phonetics} />
     </>
   );
 }
