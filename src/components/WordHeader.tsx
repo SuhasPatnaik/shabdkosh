@@ -1,16 +1,29 @@
-import { useEffect, useRef, useState } from "react";
-
 export default function WordHeader({ word, phonetics }) {
-  let usablePhonetics = phonetics;
+  // Try to find a phonetic with both text and audio
+  let usablePhonetics = phonetics?.filter(
+    (phonetic) => phonetic.text && phonetic.audio
+  );
 
-  if (phonetics && phonetics.length > 1) {
-    usablePhonetics = phonetics.filter(
-      (phonetic) => phonetic.text && phonetic.audio
-    );
+  // If none found with both, try to find one with just text
+  if (!usablePhonetics?.length) {
+    usablePhonetics = phonetics?.filter((phonetic) => phonetic.text);
+  }
+
+  // If still none found, check for one with just audio
+  if (!usablePhonetics?.length) {
+    usablePhonetics = phonetics?.filter((phonetic) => phonetic.audio);
+  }
+
+  // If nothing found at all, use the first phonetic entry if it exists
+  if (!usablePhonetics?.length && phonetics?.length) {
+    usablePhonetics = [phonetics[0]];
   }
 
   const audioUrl = usablePhonetics?.[0]?.audio || null;
   const phoneticText = usablePhonetics?.[0]?.text;
+
+  console.log(audioUrl);
+  console.log(phoneticText);
 
   return (
     <div className="grid grid-cols-2">
@@ -22,34 +35,18 @@ export default function WordHeader({ word, phonetics }) {
 }
 
 function PlayAudio({ phoneticAudioUrl }) {
-  const [noAudio, setNoAudio] = useState(false);
-  const audioRef = useRef(null);
-
-  console.log("phoneticAudio::: ", phoneticAudioUrl);
-
-  useEffect(() => {
-    if (phoneticAudioUrl === null) {
-      setNoAudio(true);
-    } else {
-      setNoAudio(false);
-    }
-  }, [phoneticAudioUrl]);
-
-  const handlePhoneticAudio = () => {
-    if (audioRef.current) {
-      audioRef.current.play();
+  const handlePlayAudio = () => {
+    if (phoneticAudioUrl) {
+      new Audio(phoneticAudioUrl).play();
     }
   };
 
   return (
     <>
-      <audio ref={audioRef}>
-        <source src={phoneticAudioUrl} type="audio/mpeg" />
-      </audio>
       <button
-        onClick={handlePhoneticAudio}
+        onClick={handlePlayAudio}
         className={` ${
-          noAudio
+          phoneticAudioUrl === null
             ? "opacity-50"
             : "hover:opacity-75 transition-opacity cursor-pointer"
         }`}
