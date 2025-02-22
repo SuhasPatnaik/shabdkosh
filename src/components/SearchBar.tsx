@@ -3,7 +3,7 @@ import { useState } from "react";
 interface SearchBarProps {
   onSearch: (searchTerm: string) => Promise<void>;
   isLoading: boolean;
-  hasError: boolean;
+  hasError: string;
 }
 
 export default function SearchBar({

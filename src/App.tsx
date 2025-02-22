@@ -6,15 +6,24 @@ import SearchBar from "./components/SearchBar";
 import Header from "./components/Header";
 
 import axios from "axios";
+import Meaning from "./components/Meaning";
 
 interface Phonetic {
   text: string;
   audio?: string;
 }
 
+interface Meaning {
+  partOfSpeech: string;
+  definitions: Definition[];
+  synonyms: Array<string>[];
+  antonyms: Array<string>[];
+}
+
 interface DictionaryData {
   word: string;
   phonetics: Phonetic[];
+  meanings: Meaning[];
 }
 
 function App() {
@@ -40,7 +49,7 @@ function App() {
         setData(response.data[0]);
       }
     } catch (err) {
-      if (axios.isAxiosError(err) && err.response?.status === 404) {
+      if (err.response?.status === 404) {
         setError("404: Word Not Found");
       } else {
         setError("An error occurred while fetching the data");
@@ -64,6 +73,7 @@ function App() {
         />
         {error && <p className="text-warning mt-4">{error}</p>}
         {data && <Dictionary word={data.word} phonetics={data.phonetics} />}
+        <Meaning meanings={data?.meanings} />
       </div>
     </>
   );
