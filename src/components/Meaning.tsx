@@ -1,4 +1,4 @@
-export default function Meaning({ meanings, sourceUrl }) {
+export default function Meaning({ meanings, sourceUrls }) {
   return (
     <>
       {meanings?.map((meaning, index) => (
@@ -10,14 +10,12 @@ export default function Meaning({ meanings, sourceUrl }) {
           <p className="text-neutral-400">Meaning</p>
           <ul className="flex flex-col gap-2">
             {meaning.definitions?.map((definition, index) => (
-              <>
-                <li key={index} className="list-disc">
-                  {definition?.definition}
-                </li>
-                <li key={index} className="text-neutral-400">
+              <div key={index}>
+                <li className="list-disc">{definition?.definition}</li>
+                <li className="text-neutral-400">
                   {JSON.stringify(definition?.example)}
                 </li>
-              </>
+              </div>
             ))}
           </ul>
           {meaning.synonyms?.length > 0 && (
@@ -28,14 +26,18 @@ export default function Meaning({ meanings, sourceUrl }) {
           )}
         </div>
       ))}
-      <div className="w-full border-t-2" />
-      <p className="text-neutral-400">
-        <u>Source</u>
-      </p>
-      <a href={sourceUrl} target="_blank" className="flex gap-2">
-        <u>{sourceUrl}</u>
-        <img src="images/icon-new-window.svg" alt="Open in new tab icon" />
-      </a>
+      {sourceUrls?.length > 0 && (
+        <>
+          <div className="w-full border-t-2" />
+          <p className="text-neutral-400">
+            <u>Source</u>
+          </p>
+          <a href={sourceUrls} target="_blank" className="flex gap-2">
+            <u>{sourceUrls}</u>
+            <img src="images/icon-new-window.svg" alt="Open in new tab icon" />
+          </a>
+        </>
+      )}
     </>
   );
 }

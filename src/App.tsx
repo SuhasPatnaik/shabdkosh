@@ -1,12 +1,10 @@
 import { useState } from "react";
+import axios from "axios";
 import "./App.css";
 
 import Dictionary from "./components/Dictionary";
 import SearchBar from "./components/SearchBar";
 import Header from "./components/Header";
-
-import axios from "axios";
-import Meaning from "./components/Meaning";
 
 interface Phonetic {
   text: string;
@@ -22,14 +20,13 @@ interface Meaning {
   partOfSpeech: string;
   definitions: Definition[];
   synonyms: Array<string>[];
-  antonyms: Array<string>[];
 }
 
 interface DictionaryData {
   word: string;
   phonetics: Phonetic[];
   meanings: Meaning[];
-  sourceUrls: string;
+  sourceUrls: Array<string>[];
 }
 
 function App() {
@@ -78,8 +75,14 @@ function App() {
           hasError={error}
         />
         {error && <p className="text-warning mt-4">{error}</p>}
-        {data && <Dictionary word={data.word} phonetics={data.phonetics} />}
-        <Meaning meanings={data?.meanings} sourceUrl={data?.sourceUrls} />
+        {data && (
+          <Dictionary
+            word={data.word}
+            phonetics={data.phonetics}
+            meanings={data.meanings}
+            sourceUrls={data.sourceUrls}
+          />
+        )}
       </div>
     </>
   );
