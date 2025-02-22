@@ -13,6 +13,11 @@ interface Phonetic {
   audio?: string;
 }
 
+interface Definition {
+  definition: string;
+  synonyms: Array<string>[];
+}
+
 interface Meaning {
   partOfSpeech: string;
   definitions: Definition[];
@@ -24,6 +29,7 @@ interface DictionaryData {
   word: string;
   phonetics: Phonetic[];
   meanings: Meaning[];
+  sourceUrls: string;
 }
 
 function App() {
@@ -73,7 +79,7 @@ function App() {
         />
         {error && <p className="text-warning mt-4">{error}</p>}
         {data && <Dictionary word={data.word} phonetics={data.phonetics} />}
-        <Meaning meanings={data?.meanings} />
+        <Meaning meanings={data?.meanings} sourceUrl={data?.sourceUrls} />
       </div>
     </>
   );
