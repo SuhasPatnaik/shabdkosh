@@ -16,7 +16,7 @@ export default function Meaning({ meanings, sourceUrls }) {
                 <li className="list-none">
                   <span className="absolute left-0 text-primary-accent">•</span>
                   <span className="">{definition?.definition}</span>
-                  <span className="block text-neutral-400 mt-2">
+                  <span className="block text-neutral-400 mt-2 italic">
                     {JSON.stringify(definition?.example)}
                   </span>
                 </li>
@@ -36,7 +36,7 @@ export default function Meaning({ meanings, sourceUrls }) {
       {sourceUrls?.length > 0 && (
         <>
           <div className="w-full border-t-2" />
-          <div className="my-4 flex flex-col gap-2">
+          <div className="my-4 flex flex-col gap-2 md:flex-row md:gap-8">
             <p className="text-neutral-400">
               <u>Source</u>
             </p>

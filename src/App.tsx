@@ -67,22 +67,24 @@ function App() {
 
   return (
     <>
-      <div className="py-6 px-6">
-        <Header />
-        <SearchBar
-          onSearch={handleSearch}
-          isLoading={loading}
-          hasError={error}
-        />
-        {error && <p className="text-warning mt-4">{error}</p>}
-        {data && (
-          <Dictionary
-            word={data.word}
-            phonetics={data.phonetics}
-            meanings={data.meanings}
-            sourceUrls={data.sourceUrls}
+      <div>
+        <main className="py-6 px-6 mx-auto md:py-10 md:px-8 lg:max-w-[60vw]">
+          <Header />
+          <SearchBar
+            onSearch={handleSearch}
+            isLoading={loading}
+            hasError={error}
           />
-        )}
+          {error && <p className="text-warning mt-4">{error}</p>}
+          {data && (
+            <Dictionary
+              word={data.word}
+              phonetics={data.phonetics}
+              meanings={data.meanings}
+              sourceUrls={data.sourceUrls}
+            />
+          )}
+        </main>
       </div>
     </>
   );

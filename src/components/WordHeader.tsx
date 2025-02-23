@@ -27,11 +27,13 @@ export default function WordHeader({ word, phonetics }) {
 
   return (
     <div className="py-6 grid grid-cols-2 gap-y-[0.5rem]">
-      <h1 className="text-[2rem]">{word}</h1>
+      <h1 className="text-[2rem] lg:text-[4rem]">{word}</h1>
       <div className="row-span-2 justify-self-end self-center">
         <PlayAudio phoneticAudioUrl={audioUrl} />
       </div>
-      {phoneticText && <h2 className="text-primary-accent">{phoneticText}</h2>}
+      {phoneticText && (
+        <h2 className="text-primary-accent lg:text-[1.5rem]">{phoneticText}</h2>
+      )}
     </div>
   );
 }
