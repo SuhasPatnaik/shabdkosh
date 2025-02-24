@@ -30,6 +30,7 @@ interface DictionaryData {
 }
 
 function App() {
+  const [fontFamily, setFontFamily] = useState("Inter");
   const [data, setData] = useState<DictionaryData | null>(null);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(false);
@@ -63,13 +64,24 @@ function App() {
     }
   };
 
+  const handleFontChange = (selectedFont) => {
+    const fontFamily = selectedFont.trim().toLowerCase();
+    if (fontFamily === "serif") {
+      setFontFamily("Lora");
+    } else if (fontFamily === "mono") {
+      setFontFamily("Inconsolata");
+    } else {
+      setFontFamily("Inter");
+    }
+  };
+
   console.log(data);
 
   return (
     <>
-      <div>
+      <div style={{ fontFamily: fontFamily }}>
         <main className="py-6 px-6 mx-auto md:py-10 md:px-8 lg:max-w-[60vw]">
-          <Header />
+          <Header fontFamily={fontFamily} onFontChange={handleFontChange} />
           <SearchBar
             onSearch={handleSearch}
             isLoading={loading}
