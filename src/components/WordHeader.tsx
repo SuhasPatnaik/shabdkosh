@@ -1,4 +1,12 @@
-export default function WordHeader({ word, phonetics }) {
+import { Phonetic } from "../types";
+import { PlayAudio } from "./PlayAudio";
+
+interface WordHeaderProps {
+  word: string;
+  phonetics: Phonetic[];
+}
+
+export default function WordHeader({ word, phonetics }: WordHeaderProps) {
   // Find a phonetic with both text and audio
   let usablePhonetics = phonetics?.filter(
     (phonetic) => phonetic.text && phonetic.audio
@@ -22,9 +30,6 @@ export default function WordHeader({ word, phonetics }) {
   const audioUrl = usablePhonetics?.[0]?.audio || null;
   const phoneticText = usablePhonetics?.[0]?.text;
 
-  console.log(audioUrl);
-  console.log(phoneticText);
-
   return (
     <div className="py-6 grid grid-cols-2 gap-y-[0.5rem]">
       <h1 className="text-[2rem] lg:text-[4rem]">{word}</h1>
@@ -35,32 +40,5 @@ export default function WordHeader({ word, phonetics }) {
         <h2 className="text-primary-accent lg:text-[1.5rem]">{phoneticText}</h2>
       )}
     </div>
-  );
-}
-
-function PlayAudio({ phoneticAudioUrl }) {
-  const handlePlayAudio = () => {
-    if (phoneticAudioUrl) {
-      new Audio(phoneticAudioUrl).play();
-    }
-  };
-
-  return (
-    <>
-      <button
-        onClick={handlePlayAudio}
-        className={` ${
-          phoneticAudioUrl === null
-            ? "opacity-50"
-            : "hover:opacity-75 transition-opacity cursor-pointer"
-        }`}
-      >
-        <img
-          src="/images/icon-play.svg"
-          alt="Play the phonetic audio icon"
-          className="size-12"
-        />
-      </button>
-    </>
   );
 }

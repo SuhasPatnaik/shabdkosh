@@ -1,3 +1,4 @@
+import { FontMenuProps } from "../types";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -5,7 +6,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 
-export default function FontMenu({ fontFamily, onFontChange }) {
+export default function FontMenu({ fontFamily, onFontChange }: FontMenuProps) {
   const selectedFont =
     fontFamily === "Inter"
       ? "Sans Serif"

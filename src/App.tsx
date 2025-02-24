@@ -1,33 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import "./App.css";
+import { DictionaryData } from "./types";
 
 import Dictionary from "./components/Dictionary";
 import SearchBar from "./components/SearchBar";
 import Header from "./components/Header";
-
-interface Phonetic {
-  text: string;
-  audio?: string;
-}
-
-interface Definition {
-  definition: string;
-  synonyms: Array<string>[];
-}
-
-interface Meaning {
-  partOfSpeech: string;
-  definitions: Definition[];
-  synonyms: Array<string>[];
-}
-
-interface DictionaryData {
-  word: string;
-  phonetics: Phonetic[];
-  meanings: Meaning[];
-  sourceUrls: Array<string>[];
-}
 
 function App() {
   const [fontFamily, setFontFamily] = useState("Inter");
@@ -53,7 +31,7 @@ function App() {
         setData(response.data[0]);
       }
     } catch (err) {
-      if (err.response?.status === 404) {
+      if (axios.isAxiosError(err) && err.response?.status === 404) {
         setError("404: Word Not Found");
       } else {
         setError("An error occurred while fetching the data");
@@ -64,7 +42,7 @@ function App() {
     }
   };
 
-  const handleFontChange = (selectedFont) => {
+  const handleFontChange = (selectedFont: string) => {
     const fontFamily = selectedFont.trim().toLowerCase();
     if (fontFamily === "serif") {
       setFontFamily("Lora");

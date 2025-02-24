@@ -1,4 +1,14 @@
-export default function Meaning({ meanings, sourceUrls }) {
+import { Meaning } from "../types";
+
+interface MeaningContentProps {
+  meanings: Meaning[];
+  sourceUrls: string;
+}
+
+export default function MeaningContent({
+  meanings,
+  sourceUrls,
+}: MeaningContentProps) {
   return (
     <>
       {meanings?.map((meaning, index) => (
