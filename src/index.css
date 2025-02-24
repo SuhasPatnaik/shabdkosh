@@ -112,6 +112,11 @@
   --color-neutral-200: var(--neutral-200);
   --color-neutral-100: var(--neutral-100);
   --color-warning: var(--warning);
+
+  /* Custom font family palette */
+  --font-sans: "Inter";
+  --font-serif: "Lora";
+  --font-mono: "Inconsolata";
 }
 
 @font-face {

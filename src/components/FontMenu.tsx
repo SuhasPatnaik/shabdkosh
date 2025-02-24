@@ -22,21 +22,21 @@ export default function FontMenu({ fontFamily, onFontChange }) {
             <img src="/images/icon-arrow-down.svg" alt="Down arrow indicator" />
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
+        <DropdownMenuContent className="border-none shadow-primary-accent/70 shadow-[0px_0px_16px_4px] mt-2">
           <DropdownMenuItem
-            className="cursor-pointer"
+            className="cursor-pointer font-sans"
             onClick={() => onFontChange("sansserif")}
           >
             Sans Serif
           </DropdownMenuItem>
           <DropdownMenuItem
-            className="cursor-pointer"
+            className="cursor-pointer font-serif"
             onClick={() => onFontChange("serif")}
           >
             Serif
           </DropdownMenuItem>
           <DropdownMenuItem
-            className="cursor-pointer"
+            className="cursor-pointer font-mono"
             onClick={() => onFontChange("mono")}
           >
             Mono
