@@ -4,11 +4,10 @@ A simple and interactive dictionary application that allows users to search for 
 
 ## Features
 
-- Select a subject to start the quiz
-- Multiple-choice questions with instant feedback
-- Track your score as you progress
-- Responsive design for mobile and desktop
-- 404 error handling for invalid routes
+- Search for a word for meaning, parts of speech, usage examples
+- Play audio for the searched term
+- Select between sans-serif, serif and mono font styles
+- Toogle theme for light mode / dark mode read
 
 ## Tech Stack
 
